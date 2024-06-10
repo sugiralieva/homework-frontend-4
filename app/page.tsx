@@ -7,10 +7,12 @@ import Providers from "@/app/providers";
 export default function Home() {
     return (
         <Providers>
-    <div className='min-h-screen bg-white'>
-        <Categories/>
-    </div>
+            <div className="flex items-center justify-center min-h-screen">
+                <div className='min-h-screen bg-white'>
+                    <Categories/>
+                </div>
+            </div>
         </Providers>
 
-  );
+);
 }

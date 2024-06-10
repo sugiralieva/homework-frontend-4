@@ -76,48 +76,64 @@ const AddProduct = () => {
     };
 
     return (
-        <div>
+        <div className="min-h-screen max-w-7xl mx-auto p-6 bg-white shadow-md">
             <form onSubmit={(e) => e.preventDefault()}>
-                <div>
-                    <label>Title</label>
-                    <input type='text' placeholder='Title' />
+                <div className="mb-4">
+                    <label className="block text-gray-700 text-sm font-bold mb-2">Title</label>
+                    <input type='text' placeholder='Title'
+                           className="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
                 </div>
-                <div>
-                    <label>Price</label>
-                    <input type='text' placeholder='Price' />
+                <div className="mb-4">
+                    <label className="block text-gray-700 text-sm font-bold mb-2">Category</label>
+                    <input type='text' placeholder='Category'
+                           className="shadow appearance-none border rounded w-1/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
                 </div>
-                <div>
-                    <label>Description</label>
-                    <input type='text' placeholder='Description' />
+                <div className="mb-4">
+                    <label className="block text-gray-700 text-sm font-bold mb-2">Price</label>
+                    <input type='text' placeholder='Price'
+                           className="shadow appearance-none border rounded w-1/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
                 </div>
-                <div>
-                    <label>Category</label>
-                    <input type='text' placeholder='Category' />
+                <div className="mb-4">
+                    <label className="block text-gray-700 text-sm font-bold mb-2">Description</label>
+                    <textarea cols={30} rows={5} placeholder='Description'
+                              className="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
                 </div>
-                <div>
-                    <label>Image</label>
+                <div className="mb-4">
+                    <label className="block text-gray-700 text-sm font-bold mb-2">Image</label>
                     <input
                         type="file"
                         name="file"
                         onChange={handleFileChange}
-                        style={{ display: 'none' }}
+                        className="hidden"
                         id="fileInput"
                         multiple
                     />
-                    <button type="button" onClick={() => document.getElementById('fileInput')?.click()}>Add File</button>
-                    <div>
-                        {fileProgress.map((fileProg, index) => (
-                            <div key={index}>
-                                <img src={URL.createObjectURL(fileProg.file)} alt="Preview" style={{ width: "300px", height: "100px" }} />
-                                <label>
-                                    File progress: <progress value={fileProg.progress} max="100" />
-                                </label>
-                                <p>{fileProg.status}</p>
-                            </div>
-                        ))}
+                    <div className="flex flex-wrap items-center gap-4">
+                        <button type="button" onClick={() => document.getElementById('fileInput')?.click()}
+                                className="w-20 h-20 bg-gray-200 hover:bg-gray-300 text-gray-500 flex items-center justify-center text-3xl rounded focus:outline-none focus:shadow-outline">
+                            +
+                        </button>
+                        <div className="flex flex-wrap gap-4">
+                            {fileProgress.map((fileProg, index) => (
+                                <div key={index} className="w-20 h-20 relative">
+                                    <img src={URL.createObjectURL(fileProg.file)} alt="Preview"
+                                         className="w-full h-full object-cover rounded"/>
+                                    <div
+                                        className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white text-xs">
+                                        {fileProg.progress < 100 ? (
+                                            <progress value={fileProg.progress} max="100" className="w-3/4"/>
+                                        ) : (
+                                            <span>{fileProg.status}</span>
+                                        )}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
-                <button type="button" onClick={handleSubmit}>Send</button>
+                <button type="button" onClick={handleSubmit}
+                        className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Send
+                </button>
             </form>
         </div>
     );
