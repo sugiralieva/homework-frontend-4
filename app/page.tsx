@@ -8,7 +8,6 @@ export default function Home() {
     return (
         <Providers>
     <div className='min-h-screen bg-white'>
-      <Navbar/>
         <Categories/>
     </div>
         </Providers>

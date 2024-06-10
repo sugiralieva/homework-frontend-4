@@ -8,6 +8,10 @@ const axiosQueryInstance  = axios.create({
     baseURL: 'https://fakestoreapi.com/'
 })
 
+const axiosInstance = axios.create({
+    baseURL: 'https://api.escuelajs.co/api/v1/',
+});
+
 export  {
-    axiosQueryInstance
+    axiosQueryInstance, axiosInstance
 };
