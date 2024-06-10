@@ -2,6 +2,7 @@
 import React, { ChangeEvent, useState } from 'react';
 import { axiosInstance } from "@/app/api/apiClient";
 import { AxiosError, AxiosProgressEvent, AxiosResponse } from "axios";
+import { toast } from 'react-toastify';
 
 interface FileUploadProgress {
     file: File;
@@ -72,7 +73,7 @@ const AddProduct = () => {
     };
 
     const handleSubmit = () => {
-        alert('Files uploaded successfully!');
+        toast.success("Product successfully uploaded!")
     };
 
     return (
