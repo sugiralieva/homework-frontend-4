@@ -1,19 +1,20 @@
 import React from 'react';
-import { useQuery } from 'react-query';
-import { getProductByCategory } from "@/app/api/services/CategoriesService";
+import ProductsByCategory from "@/app/components/ProductsByCategory";
+import {useQuery} from "react-query";
+import {getAllCategories, getProductByCategory} from "@/app/api/services/CategoriesService";
+import {ProductProps} from "@/app/types/ProductType";
 
-interface ProductsByCategoryProps {
+
+interface Props {
     category: string;
 }
 
-const ProductsByCategory: React.FC<ProductsByCategoryProps> = ({ category }) => {
-    const { data, error, isLoading, isError } = useQuery<object[], Error>(
-        ['productsByCategory', category],
-        () => getProductByCategory(category),
-        {
-            retry: 3
-        }
-    );
+
+const Category: React.FC<Props> = ({ category }) => {
+
+    const { data, error, isLoading, isError } = useQuery<ProductProps[], Error>('categories', () => getProductByCategory(decodeURIComponent(category)), {
+        retry: 3
+    });
 
     if (isLoading) {
         return <div>Loading...</div>;
@@ -26,13 +27,18 @@ const ProductsByCategory: React.FC<ProductsByCategoryProps> = ({ category }) => 
     return (
         <div>
             <h1>Products in {category}</h1>
-            <ul>
-                {data && data.map((product, index) => (
-                    <li key={index}>{JSON.stringify(product)}</li>
+            <ul className="text-white">
+                {data && data.map((product) => (
+                    <li key={product.id}>
+                        <h2>{product.title}</h2>
+                        <p>{product.description}</p>
+                        <p>Price: ${product.price}</p>
+                        <img src={product.image} alt={product.title} width={50}/>
+                    </li>
                 ))}
             </ul>
         </div>
     );
 };
 
-export default ProductsByCategory;
+export default Category;

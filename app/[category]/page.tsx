@@ -1,5 +1,8 @@
+'use client'
 import React from 'react';
 import ProductsByCategory from "@/app/components/ProductsByCategory";
+import Providers from "@/app/providers";
+
 
 interface Params {
     category: string;
@@ -12,10 +15,13 @@ interface Props {
 const Category: React.FC<Props> = ({ params }) => {
     const { category } = params;
 
+
     return (
+        <Providers>
         <div>
-            {decodeURIComponent(category)}
+            <ProductsByCategory category={decodeURIComponent(category)}/>
         </div>
+        </Providers>
     );
 };
 

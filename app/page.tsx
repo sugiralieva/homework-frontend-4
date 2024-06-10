@@ -1,18 +1,17 @@
 'use client'
 import Navbar from "@/app/components/Navbar";
 import Categories from "@/app/components/Categories";
-import {QueryClient, QueryClientProvider} from "react-query";
+import Providers from "@/app/providers";
 
-const queryClient = new QueryClient();
 
 export default function Home() {
     return (
-        <QueryClientProvider client={queryClient}>
+        <Providers>
     <div className='min-h-screen bg-white'>
       <Navbar/>
         <Categories/>
     </div>
-        </QueryClientProvider>
+        </Providers>
 
   );
 }
